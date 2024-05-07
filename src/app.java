@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import Vehiculo.Asiento;
 import Vehiculo.Autobus;
 import Vehiculo.Particular;
@@ -16,19 +19,34 @@ public class app {
 
         Autobus autobus1 = new Autobus("Iveco", "Tata", "eahrtp9q8734hy9p4", 3, 11, 123);
 
-        System.out.println(taxi1);
-        System.out.println(taxi2);
-        System.out.println(particular1);
-        System.out.println(particular2);
-        System.out.println(autobus1);
+        List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+        listaVehiculos.add(taxi1);
+        listaVehiculos.add(taxi2);
+        listaVehiculos.add(autobus1);
+        listaVehiculos.add(particular1);
+        listaVehiculos.add(particular2);
 
-        System.out.println("total de vehículos funcionando: " + Vehiculo.getCantVehiculos());
+        System.out.println("El taxi1 es: " + taxi1);
+        System.out.println("El vehiculo 1 de la lista es: " + listaVehiculos.get(0));
 
-        taxi1.reiniciarContador(200);
-        System.out.println("El coste de trayecto del taxi con bastidor " + taxi1.getNumBastidor() + " es de: " + taxi1.calcularCosteTrayecto());
+        // Arrays?
 
-        System.out.println(taxi1);
-        
+        Vehiculo[] arrayVehiculos = new Vehiculo[5];
+
+        for (int i = 0; i < arrayVehiculos.length; i++) {
+            arrayVehiculos[i] = listaVehiculos.get(i);
+            
+        }
+
+        System.out.println("El taxi1 es: " + taxi1);
+        System.out.println("El vehiculo 1 de la lista es: " + arrayVehiculos[0]);
+
+    }
+
+    public void mostrarVehiculos(String tipoVehiculo, ArrayList<Vehiculo> listaVehiculos) {
+
+
+
     }
     
 }
