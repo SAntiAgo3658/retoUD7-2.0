@@ -1,6 +1,6 @@
 package Vehiculo;
 
-public class Particular extends Turismo implements Iniciable {
+public class Particular extends Turismo implements Iniciable, Comparable {
 
     // Atributos
 
@@ -50,14 +50,38 @@ public class Particular extends Turismo implements Iniciable {
     }
 
     @Override
-    
-    public double calcularPrecioAlquiler(int numDias){
+
+    public double calcularPrecioAlquiler(int numDias) {
         return (numDias * 30.00);
     }
 
     @Override
 
-    public int getMaxVelocidad(){
+    public int getMaxVelocidad() {
         return 220;
     }
+
+    @Override
+    public int compareTo(Object o) {
+
+        if (o.getClass() == Particular.class) {
+
+            if ((this.conAireAcondicionado == true) && (((Particular) o).conAireAcondicionado == false)) {
+                return 1;
+
+            } else if ((this.conAireAcondicionado == false) && (((Particular) o).conAireAcondicionado == true)) {
+                return -1;
+
+            } else {
+                return 0;
+
+            }
+
+        } else {
+            return super.compareTo(o);
+
+        }
+
+    }
+
 }

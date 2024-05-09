@@ -1,6 +1,9 @@
 package Vehiculo;
 
-public abstract class Vehiculo {
+import java.io.File;
+import java.io.Serializable;
+
+public abstract class Vehiculo implements Comparable, Serializable {
 
     // Atributos
     private String marcaVehiculo;
@@ -63,4 +66,26 @@ public abstract class Vehiculo {
         return "Marca: " + this.getMarcaVehiculo() + "; Modelo: " + this.getModeloVehiculo()
                 + "; Nbastidor: " + this.getNumBastidor() + "; Npuertas: " + this.getNumPuertas();
     }
+
+    @Override
+    public int compareTo(Object o) {
+
+        if (o instanceof Vehiculo) {
+            return (this.numBastidor.compareTo(((Vehiculo) o).numBastidor));
+
+        } else {
+            return 1;
+
+        }
+
+    }
+
+    // Guardar
+
+    public void guardarVehiculo(File File) {
+
+        
+
+    }
+
 }

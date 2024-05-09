@@ -1,6 +1,6 @@
 package Vehiculo;
 
-public class Taxi extends Turismo implements Calculable, Iniciable {
+public class Taxi extends Turismo implements Calculable, Iniciable, Comparable {
 
     // Abtributos
     private static final double IMPORTE_INICIO = 2.00;
@@ -58,8 +58,6 @@ public class Taxi extends Turismo implements Calculable, Iniciable {
         this.kmRecorridos = kilometros;
         System.out.println("El Taxi tiene acumulados un total de " + this.kmRecorridos + "km.");
 
-        
-
     }
 
     @Override
@@ -73,4 +71,28 @@ public class Taxi extends Turismo implements Calculable, Iniciable {
 
         return 200;
     }
+
+    @Override
+    public int compareTo(Object o) {
+
+        if (o.getClass() == Taxi.class) {
+
+            if (this.importeKm > ((Taxi) o).importeKm) {
+                return 1;
+                
+            } else if (this.importeKm == ((Taxi) o).importeKm) {
+                return 0;
+
+            } else {
+                return -1;
+
+            }
+
+        } else {
+            return super.compareTo(o);
+
+        }
+
+    }
+
 }

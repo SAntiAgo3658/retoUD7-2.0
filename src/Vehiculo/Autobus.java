@@ -1,6 +1,6 @@
 package Vehiculo;
 
-public class Autobus extends Vehiculo {
+public class Autobus extends Vehiculo implements Comparable{
 
     // Atributos
 
@@ -37,6 +37,26 @@ public class Autobus extends Vehiculo {
     public String toString() {
 
         return super.toString() + "; Número: " + this.getNumBus() + "; Numero de paradas: " + this.getNumParada();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+
+        if (o.getClass() == Autobus.class) {
+
+            if (this.numParada > ((Autobus) o).numParada) {
+                return 1;
+            } else if (this.numParada == ((Autobus) o).numParada) {
+                return 0;
+            } else {
+                return -1;
+            }
+            
+        } else {
+            return super.compareTo(o);
+            
+        }
+        
     }
 
 }

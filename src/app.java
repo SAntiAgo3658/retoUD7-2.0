@@ -5,48 +5,84 @@ import Vehiculo.Asiento;
 import Vehiculo.Autobus;
 import Vehiculo.Particular;
 import Vehiculo.Taxi;
+import Vehiculo.Turismo;
 import Vehiculo.Vehiculo;
 
-public class app {
+public class App {
+    public static void main(String[] args) throws Exception {
 
-    public static void main(String[] args) {
+        Taxi taxi1 = new Taxi("Seat", "Ibiza", "0123456789abcdef@", 5, Asiento.RECLINABLE, 256000, 5.6);
+        Taxi taxi2 = new Taxi("Seat", "Leon", "0123456789abcdef€", 3, Asiento.CALEFACCION, 1000, 7.2);
 
-        Taxi taxi1 = new Taxi("Córdoba", "Seat", "7341hsfh34uf7yu8i", 5, Asiento.RECLINABLE, 10000, 5.7);
-        Taxi taxi2 = new Taxi("Pryus", "Toyota", "7341hsfh34uf7yu8j", 5, Asiento.CALEFFACCION, 100000, 9.7);
+        Particular particular1 = new Particular("Seat", "Ibiza", "0123456789abcdef?", 5, Asiento.RECLINABLE, "Daniel",
+                true);
+        Particular particular2 = new Particular("Seat", "Ibiza", "0123456789abcdef¿", 3, Asiento.RECLINABLE, "Daniel",
+                false);
 
-        Particular particular1 = new Particular("AMG", "Mercedes", "37837oehrigeago0p", 3, Asiento.CUERO, "Juan de Dios", true);
-        Particular particular2 = new Particular("Sportage", "KIA", "37837oehrigeago0ñ", 7, Asiento.CALEFFACCION, "Juan de Mena", true);
-
-        Autobus autobus1 = new Autobus("Iveco", "Tata", "eahrtp9q8734hy9p4", 3, 11, 123);
+        Autobus autobus = new Autobus("Iveco", "JXY", "0123456789abcdef#", 3, 60, 26);
 
         List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
         listaVehiculos.add(taxi1);
         listaVehiculos.add(taxi2);
-        listaVehiculos.add(autobus1);
         listaVehiculos.add(particular1);
         listaVehiculos.add(particular2);
+        listaVehiculos.add(autobus);
 
-        System.out.println("El taxi1 es: " + taxi1);
-        System.out.println("El vehiculo 1 de la lista es: " + listaVehiculos.get(0));
+        // System.out.println("El taxi1 es: " + taxi1);
+        // System.out.println("El vehículo 1 de la lista es: " + listaVehiculos.get(0));
 
-        // Arrays?
-
+        // y con array se puede heredar ??
         Vehiculo[] arrayVehiculos = new Vehiculo[5];
-
         for (int i = 0; i < arrayVehiculos.length; i++) {
             arrayVehiculos[i] = listaVehiculos.get(i);
-            
         }
+        // System.out.println("El taxi1 es: " + taxi1);
+        // System.out.println("El vehículo 1 del array es: " + arrayVehiculos[0]);
 
-        System.out.println("El taxi1 es: " + taxi1);
-        System.out.println("El vehiculo 1 de la lista es: " + arrayVehiculos[0]);
+        // mostrarVehiculos("taxi", listaVehiculos);
+        // mostrarVehiculos("particular", listaVehiculos);
+        // mostrarVehiculos("autobus", listaVehiculos);
+
+        // comparamos los dos taxis.
+        System.out.println(taxi1.compareTo(taxi2)!=taxi2.compareTo(taxi1));
+        System.out.println(taxi1.compareTo(particular1));
+        System.out.println(particular1.compareTo(taxi1));
+        System.out.println(autobus.compareTo(taxi1));
+        System.out.println(autobus.compareTo(particular1));
+        System.out.println(taxi1.compareTo(autobus));
+        System.out.println();
+        System.out.println(taxi1 instanceof Vehiculo);
+        System.out.println(autobus instanceof Vehiculo);
+        System.out.println(taxi1 instanceof Turismo);
+        System.out.println(autobus instanceof Object);
 
     }
 
-    public void mostrarVehiculos(String tipoVehiculo, ArrayList<Vehiculo> listaVehiculos) {
-
-
-
+    public static void mostrarVehiculos(String tipoVehiculo, List<Vehiculo> listaVehiculos) {
+        System.out.println("************************************");
+        System.out.println("Se muestran los vehículos del tipo: " + tipoVehiculo);
+        System.out.println("************************************");
+        for (int index = 0; index < listaVehiculos.size(); index++) {
+            switch (tipoVehiculo) {
+                case "taxi":
+                    if (listaVehiculos.get(index).getClass().equals(Taxi.class) ) {
+                        System.out.println(listaVehiculos.get(index));
+                    }
+                    break;
+                case "particular":
+                    if (listaVehiculos.get(index).getClass() == Particular.class) {
+                        System.out.println(listaVehiculos.get(index));
+                    }
+                    break;
+                case "autobus":
+                    if (listaVehiculos.get(index).getClass() == Autobus.class) {
+                        System.out.println(listaVehiculos.get(index));
+                    }
+                    break;
+                default:
+                    System.out.println("Error en tipo de vehículo introducido");
+                    break;
+            }
+        }
     }
-    
 }
